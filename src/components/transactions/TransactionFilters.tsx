@@ -65,7 +65,7 @@ export function TransactionFilters({
 
   return (
     <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4">
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-7">
         <label className="col-span-2 block md:col-span-1 lg:col-span-2">
           <span className="mb-1 block text-xs font-medium text-slate-500">Buscar</span>
           <input
@@ -127,23 +127,24 @@ export function TransactionFilters({
 
         <div className="col-span-2 grid grid-cols-2 gap-3 md:col-span-3 lg:col-span-2">
           <label className="block">
-            <span className="mb-1 block text-xs font-medium text-slate-500">Desde</span>
-            <input
-              type="date"
-              value={filters.dateFrom}
-              onChange={(e) => update('dateFrom', e.target.value)}
-              className={fieldClasses}
-            />
-          </label>
-          <label className="block">
-            <span className="mb-1 block text-xs font-medium text-slate-500">Hasta</span>
-            <input
-              type="date"
-              value={filters.dateTo}
-              onChange={(e) => update('dateTo', e.target.value)}
-              className={fieldClasses}
-            />
-          </label>
+          <span className="mb-1 block text-xs font-medium text-slate-500">Desde</span>
+          <input
+            type="date"
+            value={filters.dateFrom}
+            onChange={(e) => update('dateFrom', e.target.value)}
+            className={fieldClasses}
+          />
+        </label>
+
+        <label className="block">
+          <span className="mb-1 block text-xs font-medium text-slate-500">Hasta</span>
+          <input
+            type="date"
+            value={filters.dateTo}
+            onChange={(e) => update('dateTo', e.target.value)}
+            className={fieldClasses}
+          />
+        </label>
         </div>
       </div>
 
