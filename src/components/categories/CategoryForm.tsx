@@ -69,10 +69,16 @@ export function CategoryForm({ editingCategory, onDone }: CategoryFormProps) {
   }, [editingCategory, reset])
 
   async function onSubmit(values: CategoryFormValues) {
-    if (editingCategory) {
-      await updateCategory.mutateAsync({ id: editingCategory.id, input: values })
-    } else {
-      await createCategory.mutateAsync(values)
+    setSubmitError(null)
+    try {
+      if (editingCategory) {
+        await updateCategory.mutateAsync({ id: editingCategory.id, input: values })
+      } else {
+        await createCategory.mutateAsync(values)
+      }
+    } catch {
+      setSubmitError('No se pudo guardar la categoría. Intenta de nuevo.')
+      return
     }
     reset({ name: '', type: values.type, color: colorPresets[0] })
     onDone?.()
@@ -125,6 +131,8 @@ export function CategoryForm({ editingCategory, onDone }: CategoryFormProps) {
           <span className="mt-1 block text-xs text-rust-600">{errors.color.message}</span>
         )}
       </div>
+
+      {submitError && <p className="text-sm text-rust-600">{submitError}</p>}
 
       <Button type="submit" isLoading={isSubmitting}>
         {editingCategory ? 'Guardar cambios' : 'Crear categoría'}
